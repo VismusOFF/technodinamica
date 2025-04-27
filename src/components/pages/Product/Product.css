@@ -1,6 +1,5 @@
 .product-container {
     position: relative;
-    top: 80px;
     display: flex;
     flex-direction: column;
     align-items: center;

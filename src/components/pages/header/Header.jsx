@@ -1,47 +1,77 @@
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import './Header.css'
+import { auth } from '../../../assets/firebase'; // Убедитесь, что путь правильный
+import { onAuthStateChanged } from 'firebase/auth';
+import './Header.css';
+import { useLocation } from 'react-router-dom';
 
 const Header = () => {
+    const [authUser , setAuthUser ] = useState(null);
+    const location = useLocation(); // Получаем текущий путь
+
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
+            setAuthUser (user);
+        });
+
+        return () => unsubscribe(); // Чистим подписку при размонтировании
+    }, []);
+
+    // Функция для проверки, является ли путь активным
+    const isActive = (path) => location.pathname === path ? 'active' : '';
 
     return (
         <div className='header-container'>
             <div className='header-container-label'>
                 <Link to={'/'}>
-                
-                <div className='icon'>
-                </div>
+                    <div className='icon'></div>
                 </Link>
                 <a href="https://rostec.ru/">
-                <div className='rostech-icon'>
-                </div>
+                    <div className='rostech-icon'></div>
                 </a>
                 <div className='action-container'>
                     <Link to={'/adminconfirm'}>
-                        <button className='action-margin'>Администраторам</button>
+                        <button className={`action-margin ${isActive('/adminconfirm')}`}>Администраторам</button>
                     </Link>
                     <Link to={'/request'}>
-                        <button className='action-margin'>Сотрудникам</button>
+                        <button className={`action-margin ${isActive('/request')}`}>Сотрудникам</button>
                     </Link>
                     <Link to={'/masterconfirm'}>
-                        <button className='action-margin'>Проверяющим</button>
+                        <button className={`action-margin ${isActive('/masterconfirm')}`}>Проверяющим</button>
                     </Link>
                     <a href="http://www.respiro-oz.ru/actioner/">
-                    <button className='action-margin'>Акционерам</button>
+                        <button className={`action-margin ${isActive('http://www.respiro-oz.ru/actioner/')}`}>Акционерам</button>
                     </a>
                     <Link to={'/partner'}>
-                        <button className='action-margin'>Партнёры</button>
+                        <button className={`action-margin ${isActive('/partner')}`}>Партнёры</button>
                     </Link>
                     <Link to={'/product'}>
-                    <button className='action-margin'>Продукция</button>
+                        <button className={`action-margin ${isActive('/product')}`}>Продукция</button>
                     </Link>
                 </div>
                 <div className='auth-margin-button'>
-                <Link to={'/signin'}><button className='auth-header-button'>Войти</button></Link>
-                <Link to={'/signup'}><button className='auth-header-button2'>Зарегистрироваться</button></Link>
+                    {/* Условное отображение кнопок "Войти" и "Зарегистрироваться" */}
+                    {!authUser  && (
+                        <>
+                            <Link to={'/signin'}>
+                                <button className='auth-header-button'>Войти</button>
+                            </Link>
+                            <Link to={'/signup'}>
+                                <button className='auth-header-button2'>Зарегистрироваться</button>
+                            </Link>
+                        </>
+                    )}
+                    {/* Кнопка "Профиль" всегда отображается, если пользователь вошел */}
+                    {authUser  && (
+                        <Link to={'/profile'}>
+                            <button className='auth-header-button2'>Профиль</button>
+                        </Link>
+                    )}
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};
+
 
 export default Header;

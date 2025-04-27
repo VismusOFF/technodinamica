@@ -13,27 +13,31 @@ import MasterPage from './components/pages/master/Master';
 import Partner from './components/pages/Partner/Partner';
 import Product from './components/pages/Product/Product';
 import Footer from './components/pages/footer/Footer';
+import Profile from './components/profile/profile';
+import NewAuth from './components/newAuth/newAuth';
 
 function App() {
-
   return (
-    <BrowserRouter>
-      <Header/>
-      <Routes>
-        <Route path='/' element={<MainPage/>}/>
-        <Route path='/signin' element={<SignIn/>}/>
-        <Route path='/signup' element={<SignUp/>}/>
-        <Route path='/adminconfirm' element={<AdminConfirm/>}/>
-        <Route path='/admin' element={<AdminTable/>}/>
-        <Route path='/request' element={<RequestForm/>}/>
-        <Route path='/masterconfirm' element={<MasterConfirm/>} />
-        <Route path='/master' element={<MasterPage/>} />
-        <Route path='/partner' element={<Partner/>} />
-        <Route path='/product' element={<Product/>} />
-      </Routes>
-      
-    </BrowserRouter>
-  )
+      <BrowserRouter>
+          <Header />
+          <div style={{ marginTop: '80px' }}> {/* Учитываем высоту заголовка */}
+              <Routes>
+                  <Route path='/' element={<MainPage />} />
+                  <Route path='/signin' element={<SignIn />} />
+                  <Route path='/signup' element={<SignUp />} />
+                  <Route path='/adminconfirm' element={<AdminConfirm />} />
+                  <Route path='/admin' element={<AdminTable />} />
+                  <Route path='/request' element={<RequestForm />} />
+                  <Route path='/masterconfirm' element={<MasterConfirm />} />
+                  <Route path='/master' element={<MasterPage />} />
+                  <Route path='/partner' element={<Partner />} />
+                  <Route path='/product' element={<Product />} />
+                  <Route path='/profile' element={<Profile />} />
+                  <Route path='/newAuth' element={<NewAuth/>} />
+              </Routes>
+          </div>
+      </BrowserRouter>
+  );
 }
 
 export default App

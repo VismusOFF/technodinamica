@@ -1,0 +1,17 @@
+.ProfileContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 150px;
+}
+
+.ProfilePage {
+    padding: 15px;
+    background-color: #1D202A;
+    width: 1300px;
+    height: 700px;
+    border-radius: 15px;
+    border: 2px solid #C4D1ED;
+}

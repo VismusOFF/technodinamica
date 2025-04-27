@@ -30,14 +30,14 @@
 }
 
 .auth-header-button {
-    width: 100px;
-    height: 50px;
-    font-size: 18px;
+    width: 70px;
+    height: 40px;
+    font-size: 16px;
     color: #5AB0FF;
     background-color: #1D202A;
     border-radius: 15px;
     box-shadow: none;
-    border: 3px solid #5AB0FF;
+    border: 2px solid #5AB0FF;
     transition: 200ms;
     margin:  0px;
     cursor: pointer;
@@ -50,12 +50,12 @@
 
 .auth-header-button2 {
     width: 200px;
-    height: 50px;
-    font-size: 18px;
+    height: 40px;
+    font-size: 16px;
     color: #5AB0FF;
     background-color: #1D202A;
     border-radius: 15px;
-    border: 3px solid #5AB0FF;
+    border: 2px solid #5AB0FF;
     box-shadow: none;
     transition: 200ms;
     margin: 50px;
@@ -85,11 +85,18 @@
     cursor: pointer;
     padding: 10px;
     background: none;
-    color: #C4D1ED;
+    color: #E9ECEF;
     box-shadow: none;
     border: none;
+    transition: 0.3s;
 }
 
 .action-margin:hover {
     color: #2B8EFF;
+}
+
+.action-margin.active {
+    background-color: #5AB0FF; /* Цвет фона для активной кнопки */
+    color: white; /* Цвет текста для активной кнопки */
+    border-radius: 5px;
 }

@@ -22,11 +22,36 @@ input {
     margin: 15px;
     width: 250px;
     height: 40px;
-    border-radius: 15px;
-    font-size: 20px;
     padding-left: 50px;
     border: none;
     box-shadow: none;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    transition: 0.3s;
+    outline: none;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+input:focus {
+    border-color: #2B8EFF;
+    box-shadow: 0 0 5px rgba(98, 0, 234, 0.5);
+    color: #2B8EFF;
+}
+
+input:not(:placeholder-shown) {
+    border-color: #2B8EFF;
+}
+
+input::placeholder {
+    color: #aaa;
+    opacity: 1;
+}
+
+input.error {
+    border-color: #ff3d00; 
+    box-shadow: 0 0 5px rgba(255, 61, 0, 0.5);
 }
 
 .logo-icon-form {
@@ -60,7 +85,7 @@ input {
     width: 23px;
     height: 23px;
     position: absolute;
-    top: 365px;
+    top: 370px;
     left: 65px;
 }
 
@@ -69,7 +94,7 @@ input {
     width: 23px;
     height: 23px;
     position: absolute;
-    top: 435px;
+    top: 445px;
     left: 65px;
 }
 
@@ -78,11 +103,11 @@ input {
 }
 
 .criteria-not-met {
-    color: red;
+    color: #C4D1ED;
 }
 
 .criteria-met {
-    color: green;
+    color: #2B8EFF;
 }
 
 .password-criteria {
@@ -95,4 +120,8 @@ input {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.forgotPass {
+    margin-top: 30px;
 }

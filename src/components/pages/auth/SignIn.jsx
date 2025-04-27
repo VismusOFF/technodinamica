@@ -16,6 +16,7 @@ const SignIn = () => {
         })
         .catch((error) => {
             console.log(error)
+            alert('Неправильный логин или пароль')
         })
     }
 
@@ -36,7 +37,10 @@ const SignIn = () => {
                 value={password} onChange={(e) => setPassword(e.target.value)} />
 
                 <button className='auth-header-button' type="submit">Войти</button>
-                <AuthDetails/>
+
+                <div className='forgotPass'>
+                    Забыли <a className='forgotPassLink' href="">пароль</a> ?
+                </div>
             </form>
         </div>
     )
