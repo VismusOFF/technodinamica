@@ -1,6 +1,6 @@
 import SocialLogin from "./SocialLogin";
 import InputField from "./InputField";
-import './newAuth.css'
+
 
 const NewAuth = () => {
   return (
