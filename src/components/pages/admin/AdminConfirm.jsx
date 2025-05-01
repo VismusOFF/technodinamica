@@ -1,51 +1,53 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import './Admin.css'
+//ДАННЫЙ КОМПОНЕНТ БОЛЬШЕ НЕ ТРЕБУЕТСЯ
 
-const AdminConfirm = () => {
-  const navigate = useNavigate();
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+// import React, { useState } from 'react';
+// import { useNavigate } from 'react-router-dom';
+// import './Admin.css'
 
-  const handleLogin = (e) => {
-    e.preventDefault();
-    if (username === 'admin' && password === 'admin') {
-      // Перенаправление на страницу администратора
-      navigate('/admin');
-    } else {
-      alert('Неверные учетные данные');
-    }
-  };
+// const AdminConfirm = () => {
+//   const navigate = useNavigate();
+//   const [username, setUsername] = useState('');
+//   const [password, setPassword] = useState('');
 
-  return (
-    <div className='auth-page'>
-    <form className='form-container-signin' onSubmit={handleLogin}>
-        <div className='logo-text'>РЕСПИРАТОР ID</div>
-            <div className='logo-icon-form'>
-        </div>
-        <div  className='email-icon'></div>
+//   const handleLogin = (e) => {
+//     e.preventDefault();
+//     if (username === 'admin' && password === 'admin') {
+//       // Перенаправление на страницу администратора
+//       navigate('/admin');
+//     } else {
+//       alert('Неверные учетные данные');
+//     }
+//   };
 
-        <input placeholder='логин'
-          id="username"
-          type="text"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          required
-        />
-        <div className='lock-icon'></div>
+//   return (
+//     <div className='auth-page'>
+//     <form className='form-container-signin' onSubmit={handleLogin}>
+//         <div className='logo-text'>РЕСПИРАТОР ID</div>
+//             <div className='logo-icon-form'>
+//         </div>
+//         <div  className='email-icon'></div>
+
+//         <input placeholder='логин'
+//           id="username"
+//           type="text"
+//           value={username}
+//           onChange={(e) => setUsername(e.target.value)}
+//           required
+//         />
+//         <div className='lock-icon'></div>
       
-        <input placeholder='пароль' className='margin-bottom-80px'
-          id="password"
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
+//         <input placeholder='пароль' className='margin-bottom-80px'
+//           id="password"
+//           type="password"
+//           value={password}
+//           onChange={(e) => setPassword(e.target.value)}
+//           required
+//         />
       
-      <button className='auth-header-button' type="submit">Войти</button>
-    </form>
-    </div>
-  );
-};
+//       <button className='auth-header-button' type="submit">Войти</button>
+//     </form>
+//     </div>
+//   );
+// };
 
-export default AdminConfirm;
+//export default AdminConfirm;

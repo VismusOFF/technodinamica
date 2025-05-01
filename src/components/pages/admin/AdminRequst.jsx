@@ -96,7 +96,7 @@ const AdminRequestsTable = () => {
   ];
 
   return (
-    <div className='top-80-px'>
+    <div>
     <DataTable
       title="Заявки Пользователей"
       columns={columns}

@@ -1,23 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { auth } from '../../../assets/firebase'; // Убедитесь, что путь правильный
+import { auth } from '../../../assets/firebase';
 import { onAuthStateChanged } from 'firebase/auth';
 import './Header.css';
 import { useLocation } from 'react-router-dom';
 
 const Header = () => {
     const [authUser , setAuthUser ] = useState(null);
-    const location = useLocation(); // Получаем текущий путь
+    const location = useLocation();
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (user) => {
             setAuthUser (user);
         });
 
-        return () => unsubscribe(); // Чистим подписку при размонтировании
+        return () => unsubscribe();
     }, []);
 
-    // Функция для проверки, является ли путь активным
     const isActive = (path) => location.pathname === path ? 'active' : '';
 
     return (
@@ -30,14 +29,14 @@ const Header = () => {
                     <div className='rostech-icon'></div>
                 </a>
                 <div className='action-container'>
-                    <Link to={'/adminconfirm'}>
-                        <button className={`action-margin ${isActive('/adminconfirm')}`}>Администраторам</button>
+                    <Link to={'/admin'}>
+                        <button className={`action-margin ${isActive('/admin')}`}>Администраторам</button>
                     </Link>
                     <Link to={'/request'}>
                         <button className={`action-margin ${isActive('/request')}`}>Сотрудникам</button>
                     </Link>
-                    <Link to={'/masterconfirm'}>
-                        <button className={`action-margin ${isActive('/masterconfirm')}`}>Проверяющим</button>
+                    <Link to={'/master'}>
+                        <button className={`action-margin ${isActive('/master')}`}>Проверяющим</button>
                     </Link>
                     <a href="http://www.respiro-oz.ru/actioner/">
                         <button className={`action-margin ${isActive('http://www.respiro-oz.ru/actioner/')}`}>Акционерам</button>
@@ -47,6 +46,9 @@ const Header = () => {
                     </Link>
                     <Link to={'/product'}>
                         <button className={`action-margin ${isActive('/product')}`}>Продукция</button>
+                    </Link>
+                    <Link   to={'/tableusers'}>
+                        <button className={`action-margin ${isActive('/tableusers')}`} >Пользователи</button>
                     </Link>
                 </div>
                 <div className='auth-margin-button'>
