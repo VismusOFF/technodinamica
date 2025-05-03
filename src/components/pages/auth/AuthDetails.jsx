@@ -3,7 +3,7 @@ import { firestore } from '../../../assets/firebase'; // Импортируйт�
 import { auth } from '../../../assets/firebase'; // Импортируйте аутентификацию
 import { doc, getDoc, setDoc } from 'firebase/firestore'; // Импортируйте необходимые функции
 import { signOut } from 'firebase/auth'; // Импортируйте метод signOut
-import './AuthDetails.css'; // Импортируйте стили
+import './Auth.css'; // Импортируйте стили
 
 const AuthDetails = () => {
     const [fullName, setFullName] = useState('');
@@ -77,54 +77,60 @@ const AuthDetails = () => {
     };
 
     return (
-        <div className="auth-details-form">
-            <h2>Профиль пользователя</h2>
-            <form className='auth-details-form-container' onSubmit={handleUpdateProfile}>
-                <div>
-                    <label>ФИО:</label>
-                    <input
-                        className='inputAuth'
-                        type="text"
-                        value={fullName}
-                        onChange={(e) => setFullName(e.target.value)}
-                        placeholder="Введите ваше ФИО"
-                        required
-                    />
-                </div>
-                <div>
-                    <label>Номер телефона:</label>
-                    <input
-                        className='inputAuth'
-                        type="text"
-                        value={phoneNumber}
-                        onChange={(e) => setPhoneNumber(e.target.value)}
-                        placeholder="Введите номер телефона"
-                        required
-                    />
-                </div>
-                <div>
-                    <label>Электронная почта:</label>
-                    <input
-                        className='inputAuth'
-                        type="email"
-                        value={email}
-                        readOnly // Сделаем поле только для чтения
-                    />
-                </div>
-                <div>
-                    <label>Роль:</label>
-                    <select
-                        value={role}
-                        onChange={(e) => setRole(e.target.value)}
-                        disabled={!isAdmin} // Делаем поле недоступным, если пользователь не администратор
-                    >
-                        <option value="работник">Работник</option>
-                        <option value="мастер">Мастер</option>
-                        <option value="администратор">Администратор</option>
-                    </select>
-                </div>
-                <button type="submit">Сохранить изменения</button>
-                <button onClick={handleSignOut}>Выйти </button>
+        <div className="auth-page">
+            <form className='form-container-signin1' onSubmit={handleUpdateProfile}>
+                
+            <div className='displayFlex'> 
+                <div className='logo-icon-form'></div>
+                <div className='logo-text'>ТЕХНОДИНАМИКА</div>
+            </div>
+
+            <div className='authText'>Ваш профиль</div>
+
+            <div className='emailText'>ФИО</div>
+            <input
+                className='inputAuth'
+                type="text"
+                value={fullName}
+                onChange={(e) => setFullName(e.target.value)}
+                placeholder="Ваше ФИО"
+                required
+            />
+                
+                
+            <div className='emailText'>Номер телефона</div>
+            <input
+                className='inputAuth'
+                type="text"
+                value={phoneNumber}
+                onChange={(e) => setPhoneNumber(e.target.value)}
+                placeholder="Номер телефона"
+                required
+            />
+                
+                
+            <div className='emailText'>Почта</div>
+            <input
+                className='inputAuth'
+                type="email"
+                value={email}
+                readOnly // Сделаем поле только для чтения
+            />
+                
+                
+            <div className='emailText'>Роль</div>
+                <select
+                    value={role}
+                    onChange={(e) => setRole(e.target.value)}
+                    disabled={!isAdmin} // Делаем поле недоступным, если пользователь не администратор
+                >
+                    <option value="работник">Работник</option>
+                    <option value="мастер">Мастер</option>
+                    <option value="администратор">Администратор</option>
+                </select>
+                
+                <button className='signInButton' type="submit">Сохранить изменения</button>
+                <button className='signInButton' onClick={handleSignOut}>Выйти </button>
             </form>
         </div>
     );

@@ -23,6 +23,7 @@ const Header = () => {
         <div className='header-container'>
             <div className='header-container-label'>
                 <Link to={'/'}>
+                    
                     <div className='icon'></div>
                 </Link>
                 <a href="https://rostec.ru/">
@@ -38,9 +39,6 @@ const Header = () => {
                     <Link to={'/master'}>
                         <button className={`action-margin ${isActive('/master')}`}>Проверяющим</button>
                     </Link>
-                    <a href="http://www.respiro-oz.ru/actioner/">
-                        <button className={`action-margin ${isActive('http://www.respiro-oz.ru/actioner/')}`}>Акционерам</button>
-                    </a>
                     <Link to={'/partner'}>
                         <button className={`action-margin ${isActive('/partner')}`}>Партнёры</button>
                     </Link>
@@ -66,7 +64,10 @@ const Header = () => {
                     {/* Кнопка "Профиль" всегда отображается, если пользователь вошел */}
                     {authUser  && (
                         <Link to={'/profile'}>
-                            <button className='auth-header-button2'>Профиль</button>
+                            <button className='auth-header-button2'>
+                                <div className='userIcon'></div>
+                                Профиль
+                            </button>
                         </Link>
                     )}
                 </div>

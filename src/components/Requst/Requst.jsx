@@ -25,7 +25,16 @@ const RequestForm = () => {
   };
 
   return (
+    <div className='requestContainer'>
     <form onSubmit={handleSubmit} className='request-form'>
+
+    <div className='displayFlex'> 
+      <div className='logo-icon-form'></div>
+      <div className='logo-text'>ТЕХНОДИНАМИКА</div>
+    </div>
+
+    <div className='authText'>Форма заявки</div>
+    <div className='emailText'>Продукт</div>
       <input
         type="text"
         value={product}
@@ -33,6 +42,7 @@ const RequestForm = () => {
         placeholder="Продукт"
         required
       />
+      <div className='emailText'>Модель</div>
       <input
         type="text"
         value={model}
@@ -40,6 +50,7 @@ const RequestForm = () => {
         placeholder="Модель"
         required
       />
+      <div className='emailText'>Тип поломки</div>
       <input
         type="text"
         value={breakType}
@@ -47,6 +58,7 @@ const RequestForm = () => {
         placeholder="Тип поломки"
         required
       />
+      <div className='emailText'>Дата</div>
       <input
         type="date"
         value={date}
@@ -54,6 +66,7 @@ const RequestForm = () => {
         placeholder="Дата"
         required
       />
+      <div className='emailText'>Количество</div>
       <input
         type="number"
         value={quantity}
@@ -62,8 +75,9 @@ const RequestForm = () => {
         min="1"
         required
       />
-      <button className='button-submit' type="submit">Отправить заявку</button>
+      <button className='signInButton' type="submit">Отправить заявку</button>
     </form>
+    </div>
   );
 };
 

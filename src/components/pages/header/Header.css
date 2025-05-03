@@ -1,7 +1,7 @@
 .header-container {
     width: 100%;
     height: 80px;
-    background-color: #1D202A;
+    background-color: #11151A;
     position: fixed;
     top: 0;
     left: 0;
@@ -18,28 +18,34 @@
 
 .icon {
     width: 200px;
-    height: 50px;
+    height: 70px;
     background-color: none;
-    background-image: url('../../../assets/logo.svg');
+    background-image: url('../../../assets/logo (1).svg');
     background-repeat: no-repeat;
     background-size: contain;
 }
 
 .auth-margin-button {
     margin-left: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
 }
 
 .auth-header-button {
-    width: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
     height: 40px;
     font-size: 16px;
     color: #5AB0FF;
-    background-color: #1D202A;
+    background-color: transparent;
     border-radius: 15px;
-    box-shadow: none;
     border: 2px solid #5AB0FF;
+    box-shadow: none;
     transition: 200ms;
-    margin:  0px;
     cursor: pointer;
 }
 
@@ -49,11 +55,14 @@
 }
 
 .auth-header-button2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 200px;
     height: 40px;
     font-size: 16px;
     color: #5AB0FF;
-    background-color: #1D202A;
+    background-color: transparent;
     border-radius: 15px;
     border: 2px solid #5AB0FF;
     box-shadow: none;
@@ -99,4 +108,13 @@
     background-color: #5AB0FF; /* Цвет фона для активной кнопки */
     color: white; /* Цвет текста для активной кнопки */
     border-radius: 5px;
+}
+
+.userIcon {
+    width: 30px;
+    height: 30px;
+    background-image: url('../../../assets/bx-user.svg');
+    background-size: cover;
+    position: fixed;
+    margin-right: 120px;
 }

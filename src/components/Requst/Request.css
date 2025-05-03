@@ -1,5 +1,13 @@
 .request-form {
-    position: relative;
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    justify-content: center;
+    border: 1px solid #212A39;
+    border-radius: 10px;
+    background-color: #050E18;
+    width: 400px;
 }
 
 .button-submit {
@@ -14,4 +22,28 @@
 
 .button-submit:hover {
     transform: scale(1.1);
+}
+
+.request-form input {
+    height: 40px;
+    font-size: 18px;
+    padding: 10px 10px 10px 10px;
+    border: 1px solid #494949; /* Неактивный бордер */
+    border-radius: 4px;
+    background-color: transparent; /* Цвет фона полей */
+    color: #ccc; /* Цвет текста в полях */
+    transition: border-color 0.3s;
+    
+}
+
+.request-form input:focus {
+    border-color: #2B8EFF; /* Цвет бордера при фокусе */
+    outline: none;
+}
+
+.requestContainer {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

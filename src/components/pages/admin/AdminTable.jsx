@@ -126,7 +126,9 @@ const AdminTable = () => {
         pagination
         customStyles={tableCustomStyles}
       />
+      <div className='marginLeft'>
       <button className='button-submit' onClick={exportToExcel}>Экспорт в Excel</button>
+      </div>
     </div>
   );
 };

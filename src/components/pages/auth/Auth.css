@@ -1,109 +1,198 @@
 .auth-page {
-    margin-top: 180px;
     width: 100%;
-    height: 100%;
     display: flex;
+    align-items: center;
     justify-content: center;
 }
 
 .form-container-signin {
-    position: relative;
+    margin-top: 100px;
     display: flex;
-    background-color: #1D202A;
-    border-radius: 15px;
     flex-direction: column;
-    align-items: center;
+    padding: 30px;
+    justify-content: center;
+    border: 1px solid #212A39;
+    border-radius: 10px;
+    background-color: #050E18;
     width: 400px;
-    height: 750px;
-    border: 2px solid #C4D1ED;
 }
 
-input {
-    margin: 15px;
-    width: 250px;
-    height: 40px;
-    padding-left: 50px;
-    border: none;
-    box-shadow: none;
-    border: 2px solid #ccc;
-    border-radius: 8px;
-    font-size: 16px;
-    transition: border-color 0.3s, box-shadow 0.3s;
-    transition: 0.3s;
-    outline: none;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-input:focus {
-    border-color: #2B8EFF;
-    box-shadow: 0 0 5px rgba(98, 0, 234, 0.5);
-    color: #2B8EFF;
-}
-
-input:not(:placeholder-shown) {
-    border-color: #2B8EFF;
-}
-
-input::placeholder {
-    color: #aaa;
-    opacity: 1;
-}
-
-input.error {
-    border-color: #ff3d00; 
-    box-shadow: 0 0 5px rgba(255, 61, 0, 0.5);
+.form-container-signin1 {
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    justify-content: center;
+    border: 1px solid #212A39;
+    border-radius: 10px;
+    background-color: #050E18;
+    width: 400px;
 }
 
 .logo-icon-form {
-    background-image: url('../../../assets/logo1.png');
-    width: 120px;
-    height: 120px;
-    margin-bottom: 80px;
+    background-image: url('../../../assets/logo (1).svg');
+    width: 50px;
+    height: 50px;
     background-size: cover;
+    margin-bottom: 15px;
+}
+
+.displayFlex {
+    display: flex;
+    align-items: center;
 }
 
 .logo-text {
-    margin-top: 20px;
-    font-size: 40px;
+    color: white;
 }
 
-.margin-bottom-80px {
-    margin-bottom: 80px;
+.authText {
+    color: white;
+    font-size: 30px;
+}
+
+.emailText {
+    color: #B8B8B8;
+    font-size: 14px;
+    padding-bottom: 5px;
+    padding-top: 15px;
+}
+
+.signInButton {
+    margin-top: 45px;
+}
+
+.forgotPass {
+    margin-top: 15px;
+    justify-self: center;
+    align-self: center;
+}
+
+.form-container-signin input {
+    height: 30px;
+    font-size: 18px;
+    padding: 10px 10px 10px 40px;
+    border: 1px solid #494949; /* Неактивный бордер */
+    border-radius: 4px;
+    background-color: transparent; /* Цвет фона полей */
+    color: #ccc; /* Цвет текста в полях */
+    transition: border-color 0.3s;
+}
+.form-container-signin1 input,
+.form-container-signin1 select {
+    height: 40px;
+    font-size: 18px;
+    padding: 10px 10px 10px 10px;
+    border: 1px solid #494949; /* Неактивный бордер */
+    border-radius: 4px;
+    background-color: transparent; /* Цвет фона полей */
+    color: #ccc; /* Цвет текста в полях */
+    transition: border-color 0.3s;
+}
+
+.inputAuth {
+    padding: 0px 0px 0px 0px;
+}
+
+.form-container-signin input:focus,
+.form-container-signin select:focus,
+.form-container-signin1 input:focus,
+.form-container-signin1 select:focus {
+    border-color: #2B8EFF; /* Цвет бордера при фокусе */
+    outline: none;
+}
+
+.signInButton {
+    height: 40px;
+    color: white;
+    background-color: #2D92FB;
+    border: none;
+    transition: 0.3s;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.signInButton:hover {
+    background-color: #1A6BB8;
+}
+
+.separator {
+    padding-top: 20px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+.separator::before,
+.separator::after {
+    content: "";
+    flex: 1;
+    border-bottom: 1px solid #212A39;
+    margin: 0 10px;
+}
+
+.separator span {
+    color: white;
 }
 
 .email-icon {
+    width: 25px;
+    height: 25px;
     background-image: url('../../../assets/email.svg');
-    width: 23px;
-    height: 20px;
-    position: absolute;
-    top: 293px;
-    left: 65px;
+    background-size: cover;
+    position: fixed;
+    margin-left: 10px;
+    margin-bottom: 210px;
 }
 
 .lock-icon {
+    width: 25px;
+    height: 25px;
     background-image: url('../../../assets/lock.svg');
-    width: 23px;
-    height: 23px;
-    position: absolute;
-    top: 370px;
-    left: 65px;
+    background-size: cover;
+    position: fixed;
+    margin-left: 10px;
+    margin-bottom: 30px;
 }
 
-.lock-icon2 {
-    background-image: url('../../../assets/lock.svg');
-    width: 23px;
-    height: 23px;
-    position: absolute;
-    top: 445px;
-    left: 65px;
+.googleButton {
+    height: 40px;
+    color: #1A6BB8;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: 1px solid #1A6BB8;
+    margin-top: 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: 0.3s;
 }
 
-.margin-bottom-50px {
-    margin-bottom: 50px;
+.googleButton:hover {
+    color: #2B8EFF;
+    background-color: #0B0C0F;
+    border-color: #2B8EFF;
+}
+
+.googleIcon {
+    background-image: url('../../../assets/icons8-google.svg');
+    width: 25px;
+    height: 25px;
+    background-size: cover;
+    margin-right: 5px;
+}
+
+.noAccount {
+    margin-top: 20px;
+    align-self: center;
+    justify-self: center;
+    color: white;
 }
 
 .criteria-not-met {
-    color: #C4D1ED;
+    color: #494949;
 }
 
 .criteria-met {
@@ -111,17 +200,55 @@ input.error {
 }
 
 .password-criteria {
+    margin-top: 20px;
     display: flex;
     flex-direction: column;
 }
 
-.flex-column {
+.passworCriteriaContainer {
+    position: fixed;
+    margin-right: 800px;
+    background-color: #050E18;
+    border: 1px solid #212A39;
+    width: 200px;
+    height: 200px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
+    padding: 20px;
 }
 
-.forgotPass {
-    margin-top: 30px;
+.CriteriaText {
+    color: white;
+    font-size: 18px;
+}
+
+.email-icon1 {
+    background-image: url('../../../assets/email.svg');
+    width: 25px;
+    height: 25px;
+    background-size: cover;
+    position: fixed;
+    margin-bottom: 265px;
+    margin-left: 10px;
+}
+
+.lock-icon1 {
+    background-image: url('../../../assets/lock.svg');
+    width: 25px;
+    height: 25px;
+    background-size: cover;
+    position: fixed;
+    margin-bottom: 85px;
+    margin-left: 10px;
+}
+
+.lock-icon2 {
+    background-image: url('../../../assets/lock.svg');
+    width: 25px;
+    height: 25px;
+    background-size: cover;
+    position: fixed;
+    margin-top: 90px;
+    margin-left: 10px;
 }

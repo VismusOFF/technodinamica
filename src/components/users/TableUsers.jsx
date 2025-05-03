@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import DataTable from "react-data-table-component";
 import { firestore } from '../../assets/firebase'; 
-import { collection, getDocs } from "firebase/firestore";
-import './tableUsers.css';
+import { collection, getDocs, updateDoc, doc } from "firebase/firestore";
+import '../../components/pages/admin/Admin.css';
 
 const TableUsers = () => {
     const [users, setUsers] = useState([]);
@@ -30,7 +30,7 @@ const TableUsers = () => {
                 backgroundColor: '#0B0C0F',
                 border: 'none',
                 '&:hover': {
-                    backgroundColor: '#525252', // Цвет фона при наведении
+                    backgroundColor: '#525252',
                 },
             },
             stripedStyle: {
@@ -61,8 +61,7 @@ const TableUsers = () => {
                 backgroundColor: '#919191',
               },
             },
-          }
-        
+        }
     };
 
     const columns = [
@@ -85,8 +84,34 @@ const TableUsers = () => {
             name: 'Роль',
             selector: row => row.role,
             sortable: true,
+            cell: row => (
+                <select className='select-container'
+                    value={row.role} 
+                    onChange={(e) => handleRoleChange(row.id, e.target.value)}
+                >
+                    <option value="Работник">Работник</option>
+                    <option value="Мастер">Мастер</option>
+                    <option value="Администратора">Администратор</option>
+                </select>
+            ),
         }
     ];
+
+    const handleRoleChange = async (userId, newRole) => {
+        try {
+            const userDoc = doc(firestore, 'users', userId);
+            await updateDoc(userDoc, { role: newRole });
+
+            // Обновление состояния пользователей
+            setUsers(prevUsers => 
+                prevUsers.map(user => 
+                    user.id === userId ? { ...user, role: newRole } : user
+                )
+            );
+        } catch (error) {
+            console.error("Ошибка при обновлении роли пользователя", error);
+        }
+    };
 
     useEffect(() => {
         const fetchUsers = async () => {

@@ -4,15 +4,16 @@
 }
 
 .button-delete {
-    border: none;
-    width: 100px;
-    height: 40px;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: 300ms;
+  height: 30px;
+  color: white;
+  background-color: #2D92FB;
+  border: none;
+  transition: 0.3s;
+  border-radius: 4px;
+  cursor: pointer;
 }
 .button-delete:hover {
-    background-color: #C4D1ED;
+  background-color: #1A6BB8;
     transform: scale(1.1);
 }
 
@@ -55,3 +56,6 @@ option {
     border: 2px solid #5AB0FF;
   }
   
+  .marginLeft {
+    margin-left: 20px;
+  }
