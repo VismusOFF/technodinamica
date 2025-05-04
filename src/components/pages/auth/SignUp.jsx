@@ -60,6 +60,7 @@ const SignUp = () => {
         createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 console.log('Пользователь успешно зарегистрирован:', userCredential);
+                navigate('/profile')
             })
             .catch((error) => {
                 console.error('Ошибка при регистрации пользователя:', error);
@@ -138,8 +139,8 @@ const SignUp = () => {
                 <button className='googleButton' onClick={onGoogleSignIn}><div className='googleIcon'></div>Войти с Google</button>
 
                 <div className='noAccount'>
-                Уже есть аккаунт?ᅟ 
-                    <Link to='/signin'>Войти</Link>
+                <div></div>Уже есть аккаунт? <div></div>
+                    <div className='noAccount1'><Link to='/signin'>Войти</Link></div>
                     </div>
             </form>
         </div>

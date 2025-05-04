@@ -16,6 +16,7 @@ import NewAuth from './components/newAuth/newAuth';
 import { AuthProvider } from './components/context/authContext';
 import PrivateRoute from './components/routes/privateRoute';
 import TableUsers from './components/users/TableUsers';
+import ResetPassword from './components/pages/auth/ResetPass';
 
 function App() {
     return (
@@ -27,6 +28,7 @@ function App() {
                         <Route path='/' element={<MainPage />} />
                         <Route path='/signin' element={<SignIn />} />
                         <Route path='/signup' element={<SignUp />} />
+                        <Route path='/reset' element={<ResetPassword/>} />
                         
                         <Route path='/admin' element={
                             <PrivateRoute allowedRoles={['администратор']}>

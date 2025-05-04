@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { auth } from '../../../assets/firebase';
 import { onAuthStateChanged } from 'firebase/auth';
@@ -7,50 +7,73 @@ import { useLocation } from 'react-router-dom';
 
 const Header = () => {
     const [authUser , setAuthUser ] = useState(null);
+    const [activeIndex, setActiveIndex] = useState(0);
+    const [isIndicatorVisible, setIsIndicatorVisible] = useState(false);
     const location = useLocation();
+    const buttonRefs = useRef([]);
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (user) => {
             setAuthUser (user);
         });
-
         return () => unsubscribe();
     }, []);
 
+    useEffect(() => {
+        // Определяем активный индекс на основе текущего пути
+        const paths = ['/request', '/master', '/admin', '/partner', '/product', '/tableusers'];
+        const newIndex = paths.indexOf(location.pathname);
+        if (newIndex !== -1) {
+            setActiveIndex(newIndex);
+            setIsIndicatorVisible(true); // Показываем индикатор, если путь соответствует
+        } else {
+            setIsIndicatorVisible(false); // Скрываем индикатор, если путь не соответствует
+        }
+    }, [location.pathname]); // Запускаем эффект при изменении пути
+
     const isActive = (path) => location.pathname === path ? 'active' : '';
+
+    const handleButtonClick = (index) => {
+        setActiveIndex(index);
+        setIsIndicatorVisible(true); // Показываем индикатор при нажатии
+    };
 
     return (
         <div className='header-container'>
             <div className='header-container-label'>
                 <Link to={'/'}>
-                    
                     <div className='icon'></div>
                 </Link>
                 <a href="https://rostec.ru/">
                     <div className='rostech-icon'></div>
                 </a>
                 <div className='action-container'>
-                    <Link to={'/admin'}>
-                        <button className={`action-margin ${isActive('/admin')}`}>Администраторам</button>
-                    </Link>
-                    <Link to={'/request'}>
-                        <button className={`action-margin ${isActive('/request')}`}>Сотрудникам</button>
-                    </Link>
-                    <Link to={'/master'}>
-                        <button className={`action-margin ${isActive('/master')}`}>Проверяющим</button>
-                    </Link>
-                    <Link to={'/partner'}>
-                        <button className={`action-margin ${isActive('/partner')}`}>Партнёры</button>
-                    </Link>
-                    <Link to={'/product'}>
-                        <button className={`action-margin ${isActive('/product')}`}>Продукция</button>
-                    </Link>
-                    <Link   to={'/tableusers'}>
-                        <button className={`action-margin ${isActive('/tableusers')}`} >Пользователи</button>
-                    </Link>
+                    {isIndicatorVisible && (
+                        <div
+                            className='indicator'
+                            style={{
+                                left: buttonRefs.current[activeIndex]?.offsetLeft,
+                                width: buttonRefs.current[activeIndex]?.offsetWidth,
+                            }}
+                        ></div>
+                    )}
+                    {['/request', '/master', '/admin', '/partner', '/product', '/tableusers'].map((path, index) => (
+                        <Link to={path} key={index}>
+                            <button
+                                className={`action-margin ${isActive(path)}`}
+                                onClick={() => handleButtonClick(index)}
+                                ref={el => buttonRefs.current[index] = el}
+                            >
+                                {path === '/request' ? 'Сотрудникам' :
+                                 path === '/master' ? 'Проверяющим' :
+                                 path === '/admin' ? 'Администраторам' :
+                                 path === '/partner' ? 'Партнёры' :
+                                 path === '/product' ? 'Продукция' : 'Пользователи'}
+                            </button>
+                        </Link>
+                    ))}
                 </div>
                 <div className='auth-margin-button'>
-                    {/* Условное отображение кнопок "Войти" и "Зарегистрироваться" */}
                     {!authUser  && (
                         <>
                             <Link to={'/signin'}>
@@ -61,7 +84,6 @@ const Header = () => {
                             </Link>
                         </>
                     )}
-                    {/* Кнопка "Профиль" всегда отображается, если пользователь вошел */}
                     {authUser  && (
                         <Link to={'/profile'}>
                             <button className='auth-header-button2'>
@@ -75,6 +97,5 @@ const Header = () => {
         </div>
     );
 };
-
 
 export default Header;

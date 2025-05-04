@@ -12,7 +12,6 @@
     height: 100%;
     display: flex;
     align-items: center;
-    font-size: 32px;
     margin-left: 20px;
 }
 
@@ -90,6 +89,7 @@
 }
 
 .action-margin {
+    font-size: 15px;
     transition: 300ms;
     cursor: pointer;
     padding: 10px;
@@ -105,9 +105,9 @@
 }
 
 .action-margin.active {
-    background-color: #5AB0FF; /* Цвет фона для активной кнопки */
-    color: white; /* Цвет текста для активной кнопки */
-    border-radius: 5px;
+
+    color: #2F95F7;
+    
 }
 
 .userIcon {
@@ -117,4 +117,22 @@
     background-size: cover;
     position: fixed;
     margin-right: 120px;
+}
+
+.action-container {
+    width: 900px;
+    font-size: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    position: relative; /* Для позиционирования индикатора */
+}
+
+.indicator {
+    position: absolute;
+    bottom: 8px; /* Расстояние от кнопок */
+    height: 3px; /* Высота полосы */
+    background-color: #2F95F7; /* Цвет полосы */
+    transition: left 0.3s ease, width 0.3s ease; /* Анимация перемещения и изменения ширины */
 }

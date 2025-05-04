@@ -59,13 +59,15 @@
 }
 
 .signInButton {
-    margin-top: 45px;
+    margin-top: 20px;
 }
 
 .forgotPass {
     margin-top: 15px;
     justify-self: center;
     align-self: center;
+    text-decoration: underline;
+    color: #1A6BB8;
 }
 
 .form-container-signin input {
@@ -142,7 +144,7 @@
     background-size: cover;
     position: fixed;
     margin-left: 10px;
-    margin-bottom: 210px;
+    margin-bottom: 245px;
 }
 
 .lock-icon {
@@ -152,7 +154,7 @@
     background-size: cover;
     position: fixed;
     margin-left: 10px;
-    margin-bottom: 30px;
+    margin-bottom: 65px;
 }
 
 .googleButton {
@@ -185,10 +187,20 @@
 }
 
 .noAccount {
+    display: flex;
     margin-top: 20px;
     align-self: center;
     justify-self: center;
+}
+
+.noAccountText {
+    text-decoration: none;
     color: white;
+}
+
+.noAccount1 {
+    text-decoration: underline;
+    color: #1A6BB8;
 }
 
 .criteria-not-met {
@@ -229,7 +241,7 @@
     height: 25px;
     background-size: cover;
     position: fixed;
-    margin-bottom: 265px;
+    margin-bottom: 238px;
     margin-left: 10px;
 }
 
@@ -239,7 +251,7 @@
     height: 25px;
     background-size: cover;
     position: fixed;
-    margin-bottom: 85px;
+    margin-bottom: 58px;
     margin-left: 10px;
 }
 
@@ -249,6 +261,14 @@
     height: 25px;
     background-size: cover;
     position: fixed;
-    margin-top: 90px;
+    margin-top: 118px;
     margin-left: 10px;
+}
+
+.marginBottom {
+    margin-bottom: 20px;
+}
+
+.form-container-signin label {
+    color: white;
 }

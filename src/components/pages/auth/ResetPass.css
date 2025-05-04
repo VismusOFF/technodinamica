@@ -1,0 +1,57 @@
+.reset-password-page {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.reset-container {
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    justify-content: center;
+    border: 1px solid #212A39;
+    border-radius: 10px;
+    background-color: #050E18;
+    width: 400px;
+}
+
+.logo-icon-form {
+    background-image: url('../../../assets/logo (1).svg');
+    width: 50px;
+    height: 50px;
+    background-size: cover;
+    margin-bottom: 15px;
+}
+
+.reset-container input {
+    height: 30px;
+    font-size: 18px;
+    padding: 10px 10px 10px 10px;
+    border: 1px solid #494949; /* Неактивный бордер */
+    border-radius: 4px;
+    background-color: transparent; /* Цвет фона полей */
+    color: #ccc; /* Цвет текста в полях */
+    transition: border-color 0.3s;
+}
+
+.reset-container input:focus {
+    border-color: #2B8EFF; /* Цвет бордера при фокусе */
+    outline: none;
+}
+
+.buttonReset {
+    height: 40px;
+    color: white;
+    background-color: #2D92FB;
+    border: none;
+    transition: 0.3s;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.buttonReset:hover {
+    background-color: #1A6BB8;
+}
