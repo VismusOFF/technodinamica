@@ -24,19 +24,26 @@ function App() {
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 767);
 
     useEffect(() => {
-        const handleResize = () => {
-            setIsMobile(window.innerWidth <= 767);
+        const mediaQuery = window.matchMedia('(max-width: 767px)');
+        const handleMediaQueryChange = (event) => {
+            setIsMobile(event.matches);
         };
 
-        window.addEventListener('resize', handleResize);
-        return () => window.removeEventListener('resize', handleResize);
+        // Устанавливаем начальное состояние
+        setIsMobile(mediaQuery.matches);
+
+        // Добавляем слушателя
+        mediaQuery.addListener(handleMediaQueryChange);
+        
+        // Удаляем слушателя при размонтировании
+        return () => mediaQuery.removeListener(handleMediaQueryChange);
     }, []);
 
     return (
         <AuthProvider>
             <BrowserRouter>
                 {isMobile ? <CustomDrawer /> : <Header />}
-                <div style={{ marginTop: '80px' }}> {/* Учитываем высоту заголовка */}
+                <div style={{ marginTop: '0px' }}> {/* Учитываем высоту заголовка */}
                     <Routes>
                         <Route path='/' element={<MainPage />} />
                         <Route path='/signin' element={<SignIn />} />
@@ -67,7 +74,7 @@ function App() {
                             </PrivateRoute>
                         } />
 
-                        <Route path='tableusers' element={
+                        <Route path='/tableusers' element={
                             <PrivateRoute allowedRoles={['администратор']}>
                                 <TableUsers />
                             </PrivateRoute>

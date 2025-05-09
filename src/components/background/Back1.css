@@ -54,3 +54,43 @@
     top: 470px;
     left: 200px;
 }
+
+@media ( max-width: 767px) {
+    
+    .tiles-container {
+        background-image: url('../../assets/airbus.jpg');
+        background-size: cover;
+        background-position: center;
+
+    }
+
+    .tile-text-container {
+        display: flex;
+        flex-direction: column;
+        margin: 0px;
+        height: 80px;
+        gap: 0px;
+        top: 0px;
+        left: 0px;
+        font-size: 14px;
+    }
+    
+    .back1-image {
+        background-position: center;
+    }
+
+    .text-h1 {
+        font-size: 16px;
+    }
+
+    .text-h2 {
+        font-size: 14px;
+    }
+    
+    .tile.selected {
+        width: 300px;
+        background-color: #1D202A;
+        font-size: 25px;
+        border: none;
+    }
+}
