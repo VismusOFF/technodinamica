@@ -55,3 +55,17 @@
 .buttonReset:hover {
     background-color: #1A6BB8;
 }
+
+@media ( max-width: 767px ) {
+    .reset-container {
+        margin: 0px;
+        margin-top: 0px;
+        display: flex;
+        flex-direction: column;
+        padding: 30px;
+        justify-content: center;
+        border: none;
+        background-color: #050E18;
+        width: 100%;
+    }
+}

@@ -272,3 +272,29 @@
 .form-container-signin label {
     color: white;
 }
+
+@media ( max-width: 767px ) {
+
+
+    .auth-page {
+        height: 100%;
+        margin-top: 0px;
+    }
+
+    .form-container-signin {
+        margin: 0px;
+        margin-top: 0px;
+        display: flex;
+        flex-direction: column;
+        padding: 30px;
+        justify-content: center;
+        border: none;
+        background-color: #050E18;
+        width: 100%;
+    }
+
+    .passworCriteriaContainer {
+        display: none;
+    }
+
+}

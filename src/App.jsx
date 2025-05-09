@@ -17,18 +17,31 @@ import { AuthProvider } from './components/context/authContext';
 import PrivateRoute from './components/routes/privateRoute';
 import TableUsers from './components/users/TableUsers';
 import ResetPassword from './components/pages/auth/ResetPass';
+import CustomDrawer from './components/draver/Drawer';
+import { useState, useEffect } from 'react';
 
 function App() {
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 767);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth <= 767);
+        };
+
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
     return (
         <AuthProvider>
             <BrowserRouter>
-                <Header />
+                {isMobile ? <CustomDrawer /> : <Header />}
                 <div style={{ marginTop: '80px' }}> {/* Учитываем высоту заголовка */}
                     <Routes>
                         <Route path='/' element={<MainPage />} />
                         <Route path='/signin' element={<SignIn />} />
                         <Route path='/signup' element={<SignUp />} />
-                        <Route path='/reset' element={<ResetPassword/>} />
+                        <Route path='/reset' element={<ResetPassword />} />
                         
                         <Route path='/admin' element={
                             <PrivateRoute allowedRoles={['администратор']}>
@@ -56,7 +69,7 @@ function App() {
 
                         <Route path='tableusers' element={
                             <PrivateRoute allowedRoles={['администратор']}>
-                                <TableUsers/>
+                                <TableUsers />
                             </PrivateRoute>
                         } />
 

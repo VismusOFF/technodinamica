@@ -139,7 +139,7 @@ const SignUp = () => {
                 <button className='googleButton' onClick={onGoogleSignIn}><div className='googleIcon'></div>Войти с Google</button>
 
                 <div className='noAccount'>
-                <div></div>Уже есть аккаунт? <div></div>
+                <div className='noAccountText'>Уже есть аккаунт?</div> <div></div>
                     <div className='noAccount1'><Link to='/signin'>Войти</Link></div>
                     </div>
             </form>

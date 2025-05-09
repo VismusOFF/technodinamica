@@ -5,3 +5,9 @@ body {
   margin: 0px;
   padding: 0px;
 }
+
+@media ( max-width: 767px ) { 
+  body {
+    background-color: #050E18;
+  }
+}

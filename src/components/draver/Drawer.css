@@ -1,0 +1,52 @@
+/* Drawer.css */
+
+.drawer-container {
+    display: flex;
+    align-items: center;
+    background-color: #11151A; /* Цвет фона контейнера */
+    height: 80px;
+}
+
+.drawer-header {
+    height: 80px;
+    background-color: #11151A; /* Цвет верхней полоски */
+     /* Отступы для верхней полоски */
+    display: flex;
+    justify-content: space-between; /* Разместить кнопки по краям */
+    align-items: center; /* Центрирование элементов по вертикали */
+}
+
+.drawer-content {
+    background-color: #050E18; /* Цвет фона для содержимого Drawer */
+    color: white; /* Цвет текста в содержимом */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Выровнять содержимое по левому краю */
+    padding: 10px; /* Отступы для содержимого */
+    height: 100%; /* Устанавливаем высоту на 100% */
+    box-sizing: border-box; /* Учитываем отступы в высоте */
+}
+
+
+button.drawer-action-margin {
+    background-color: transparent; /* Прозрачный фон для кнопок */
+    color: white; /* Цвет текста кнопок */
+    border: none; /* Уберите границы */
+    padding: 10px 20px; /* Добавьте отступы для кнопок */
+    cursor: pointer; /* Курсор при наведении */
+}
+
+button.drawer-action-margin:hover {
+    background-color: rgba(255, 255, 255, 0.1); /* Эффект при наведении */
+}
+
+.auth-drawer-link {
+    color: white; /* Цвет текста */
+    padding: 10px; /* Отступы */
+    text-decoration: none; /* Убираем подчеркивание */
+    cursor: pointer; /* Указатель при наведении */
+}
+
+.auth-drawer-link:hover {
+    background-color: rgba(255, 255, 255, 0.1); /* Эффект при наведении */
+}
