@@ -3,12 +3,15 @@ import { auth } from '../../assets/firebase';
 import { onAuthStateChanged } from 'firebase/auth';
 import { doc, getDoc } from 'firebase/firestore';
 import { firestore } from '../../assets/firebase';
+import CircularProgress from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
     const [authUser , setAuthUser ] = useState(null);
     const [role, setRole] = useState('работник');
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, async (user) => {
@@ -23,10 +26,21 @@ export const AuthProvider = ({ children }) => {
                 setAuthUser (null);
                 setRole('работник');
             }
+            setLoading(false);
         });
 
         return () => unsubscribe();
     }, []);
+
+    if (loading) {
+        return (
+            <Box 
+                sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}
+            >
+                <CircularProgress />
+            </Box>
+        );
+    }
 
     return (
         <AuthContext.Provider value={{ authUser , role }}>
