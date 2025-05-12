@@ -10,4 +10,12 @@ body {
   body {
     background-color: #050E18;
   }
+
+  .marginTop {
+    margin-top: 0px;
+  }
+
+  .tiles-container {
+    margin-top: 0px;
+  }
 }
