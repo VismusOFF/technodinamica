@@ -91,7 +91,7 @@ const TableUsers = () => {
                 >
                     <option value="Работник">Работник</option>
                     <option value="Мастер">Мастер</option>
-                    <option value="Администратора">Администратор</option>
+                    <option value="Администратор">Администратор</option>
                 </select>
             ),
         }
