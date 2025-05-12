@@ -131,7 +131,7 @@ const TableUsers = () => {
     }, []);
 
     return (
-        <div>
+        <div className="marginTop">
             {loading ? (
                 <p>Загрузка...</p>
             ) : (

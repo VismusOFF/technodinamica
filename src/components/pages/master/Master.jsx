@@ -4,7 +4,7 @@ import AdminRequestsTable from "../admin/AdminRequst"
 const MasterPage = () => {
 
     return (
-        <div>
+        <div className="marginTop">
             <AdminRequestsTable/>
         </div>
     )

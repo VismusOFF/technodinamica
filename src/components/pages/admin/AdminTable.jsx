@@ -116,7 +116,7 @@ const AdminTable = () => {
   ];
 
   return (
-    <div >
+    <div className='marginTop' >
       <DataTable
         title="Заявки Пользователей"
         columns={columns}
