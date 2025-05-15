@@ -136,3 +136,10 @@
     background-color: #2F95F7; /* Цвет полосы */
     transition: left 0.3s ease, width 0.3s ease; /* Анимация перемещения и изменения ширины */
 }
+
+.present {
+    position: absolute;
+    color: white;
+    top: 35px;
+    left: 100px;
+}

@@ -43,6 +43,7 @@ const Header = () => {
             <div className='header-container-label'>
                 <Link to={'/'}>
                     <div className='icon'></div>
+                    <div className='present'>Презентационный</div>
                 </Link>
                 <a href="https://rostec.ru/">
                     <div className='rostech-icon'></div>
