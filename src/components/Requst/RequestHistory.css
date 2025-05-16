@@ -1,0 +1,21 @@
+.requestHistoryContainer {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.request-history-form {
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    justify-content: baseline;
+    border: 1px solid #212A39;
+    border-radius: 10px;
+    background-color: #050E18;
+    width: 600px;
+    height: 600px;
+    margin-top: 185px;
+    overflow-y: auto;
+}

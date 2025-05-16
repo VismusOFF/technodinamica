@@ -19,6 +19,8 @@ import TableUsers from './components/users/TableUsers';
 import ResetPassword from './components/pages/auth/ResetPass';
 import CustomDrawer from './components/draver/Drawer';
 import { useState, useEffect } from 'react';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import RequestHistory from './components/Requst/Requesthistory'
 
 function App() {
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 767);
@@ -29,61 +31,76 @@ function App() {
             setIsMobile(event.matches);
         };
 
-        // Устанавливаем начальное состояние
         setIsMobile(mediaQuery.matches);
-
-        // Добавляем слушателя
         mediaQuery.addListener(handleMediaQueryChange);
         
-        // Удаляем слушателя при размонтировании
         return () => mediaQuery.removeListener(handleMediaQueryChange);
     }, []);
 
+    const theme = createTheme({
+        palette: {
+            mode: 'dark',
+            primary: {
+                main: '#2F95F7',
+            },
+            secondary: {
+                main: '#f48fb1',
+            },
+            background: {
+                default: '#2F95F7',
+            },
+        },
+    });
+
     return (
         <AuthProvider>
-            <BrowserRouter>
-                {isMobile ? <CustomDrawer /> : <Header />}
-                <div style={{ marginTop: '0px' }}> {/* Учитываем высоту заголовка */}
-                    <Routes>
-                        <Route path='/' element={<MainPage />} />
-                        <Route path='/signin' element={<SignIn />} />
-                        <Route path='/signup' element={<SignUp />} />
-                        <Route path='/reset' element={<ResetPassword />} />
-                        
-                        <Route path='/admin' element={
-                            <PrivateRoute allowedRoles={['администратор']}>
-                                <AdminTable />
-                            </PrivateRoute>
-                        } />
-                        <Route path='/request' element={
-                            <PrivateRoute allowedRoles={['работник', 'мастер', 'администратор']}>
-                                <RequestForm />
-                            </PrivateRoute>
-                        } />
-                        
-                        <Route path='/master' element={
-                            <PrivateRoute allowedRoles={['мастер', 'администратор']}>
-                                <MasterPage />
-                            </PrivateRoute>
-                        } />
-                        <Route path='/partner' element={<Partner />} />
-                        <Route path='/product' element={<Product />} />
-                        <Route path='/profile' element={
-                            <PrivateRoute allowedRoles={['работник', 'мастер', 'администратор']}>
-                                <Profile />
-                            </PrivateRoute>
-                        } />
-
-                        <Route path='/tableusers' element={
-                            <PrivateRoute allowedRoles={['администратор']}>
-                                <TableUsers />
-                            </PrivateRoute>
-                        } />
-
-                        <Route path='/newAuth' element={<NewAuth />} />
-                    </Routes>
-                </div>
-            </BrowserRouter>
+            <ThemeProvider theme={theme}>
+                <BrowserRouter>
+                    {isMobile ? <CustomDrawer /> : <Header />}
+                    <div style={{ marginTop: '0px' }}>
+                        <Routes>
+                            <Route path='/' element={<MainPage />} />
+                            <Route path='/signin' element={<SignIn />} />
+                            <Route path='/signup' element={<SignUp />} />
+                            <Route path='/reset' element={<ResetPassword />} />
+                            
+                            <Route path='/admin' element={
+                                <PrivateRoute allowedRoles={['администратор']}>
+                                    <AdminTable />
+                                </PrivateRoute>
+                            } />
+                            <Route path='/request' element={
+                                <PrivateRoute allowedRoles={['работник', 'мастер', 'администратор']}>
+                                    <RequestForm />
+                                </PrivateRoute>
+                            } />
+                            <Route path='/request-history' element={
+                                <PrivateRoute allowedRoles={['работник', 'мастер', 'администратор']}>
+                                    <RequestHistory />
+                                </PrivateRoute>
+                            } />
+                            <Route path='/master' element={
+                                <PrivateRoute allowedRoles={['мастер', 'администратор']}>
+                                    <MasterPage />
+                                </PrivateRoute>
+                            } />
+                            <Route path='/partner' element={<Partner />} />
+                            <Route path='/product' element={<Product />} />
+                            <Route path='/profile' element={
+                                <PrivateRoute allowedRoles={['работник', 'мастер', 'администратор']}>
+                                    <Profile />
+                                </PrivateRoute>
+                            } />
+                            <Route path='/tableusers' element={
+                                <PrivateRoute allowedRoles={['администратор']}>
+                                    <TableUsers />
+                                </PrivateRoute>
+                            } />
+                            <Route path='/newAuth' element={<NewAuth />} />
+                        </Routes>
+                    </div>
+                </BrowserRouter>
+            </ThemeProvider>
         </AuthProvider>
     );
 }

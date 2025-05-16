@@ -89,9 +89,9 @@ const TableUsers = () => {
                     value={row.role} 
                     onChange={(e) => handleRoleChange(row.id, e.target.value)}
                 >
-                    <option value="Работник">Работник</option>
-                    <option value="Мастер">Мастер</option>
-                    <option value="Администратор">Администратор</option>
+                    <option value="работник">Работник</option>
+                    <option value="мастер">Мастер</option>
+                    <option value="администратор">Администратор</option>
                 </select>
             ),
         }
