@@ -62,7 +62,7 @@ const RequestHistory = () => {
               {requests.map((request, index) => (
                 <div key={request.id}>
                   <ListItemButton onClick={() => handleToggle(index)}>
-                    <ListItemText primary={`Продукт: ${request.продукт}`} />
+                    <ListItemText primary={`Оборудование: ${request.продукт}`} />
                   </ListItemButton>
                   <Collapse in={openIndex === index} timeout="auto" unmountOnExit>
                     <List component="div" disablePadding>

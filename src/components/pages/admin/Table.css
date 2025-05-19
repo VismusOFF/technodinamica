@@ -1,0 +1,25 @@
+.table-request {
+    width: 100%;
+    border-bottom: 1px solid #212A39;
+    overflow-x: hidden;
+    border-top: 1px solid #212A39 ;
+    
+}
+
+.table-request2 {
+    width: 100%;
+    background-color: #050E18;
+    margin-top: 80px;
+    padding-bottom: 10px;
+    border-top: 1px solid #212A39;
+    border-bottom: 1px solid #212A39;
+}
+
+.table3 {
+    width: 100%;
+    background-color: #050E18;
+    margin-top: 80px;
+    padding-bottom: 10px;
+    border-top: 1px solid #212A39;
+    border-bottom: 1px solid #212A39;
+}

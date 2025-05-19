@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import { auth } from '../../assets/firebase';
+import { auth } from '../../assets/firebase'; // Импортируйте ваш файл конфигурации Firebase
 import { onAuthStateChanged } from 'firebase/auth';
 import { doc, getDoc } from 'firebase/firestore';
 import { firestore } from '../../assets/firebase';
@@ -10,21 +10,33 @@ const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
     const [authUser , setAuthUser ] = useState(null);
-    const [role, setRole] = useState('работник');
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, async (user) => {
+            console.log("Пользователь:", user); // Проверяем, кто пользователь
             if (user) {
-                setAuthUser (user);
                 const userDoc = await getDoc(doc(firestore, 'users', user.email));
+                console.log("Документ пользователя существует:", userDoc.exists()); // Проверяем, существует ли документ
                 if (userDoc.exists()) {
                     const userData = userDoc.data();
-                    setRole(userData.role || 'работник');
+                    setAuthUser ({
+                        email: user.email,
+                        fullName: userData.fullName || '',
+                        phoneNumber: userData.phoneNumber || '',
+                        role: userData.role || 'работник'
+                    });
+                } else {
+                    // Если пользователь не найден в Firestore, создаем его с базовыми данными
+                    setAuthUser ({
+                        email: user.email,
+                        fullName: '',
+                        phoneNumber: '',
+                        role: 'работник'
+                    });
                 }
             } else {
                 setAuthUser (null);
-                setRole('работник');
             }
             setLoading(false);
         });
@@ -43,7 +55,7 @@ export const AuthProvider = ({ children }) => {
     }
 
     return (
-        <AuthContext.Provider value={{ authUser , role }}>
+        <AuthContext.Provider value={{ authUser  }}>
             {children}
         </AuthContext.Provider>
     );

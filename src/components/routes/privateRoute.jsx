@@ -3,13 +3,18 @@ import { Navigate } from 'react-router-dom';
 import { useAuth } from '../context/authContext';
 
 const PrivateRoute = ({ children, allowedRoles }) => {
-    const { authUser , role } = useAuth();
+    const { authUser  } = useAuth();
+    const role = authUser  ? authUser .role : null; // Получаем роль пользователя
+
+    console.log('authUser :', authUser );
+    console.log('role:', role);
+    console.log('allowedRoles:', allowedRoles);
 
     if (!authUser ) {
         return <Navigate to="/signin" />;
     }
 
-    if (!allowedRoles.includes(role)) {
+    if (allowedRoles && !allowedRoles.includes(role)) {
         return <Navigate to="/" />;
     }
 

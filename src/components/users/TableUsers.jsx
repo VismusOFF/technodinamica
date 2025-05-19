@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import DataTable from "react-data-table-component";
 import { firestore } from '../../assets/firebase'; 
 import { collection, getDocs, updateDoc, doc } from "firebase/firestore";
+import { CircularProgress, Box } from '@mui/material';
 import '../../components/pages/admin/Admin.css';
 
 const TableUsers = () => {
@@ -12,14 +13,14 @@ const TableUsers = () => {
         header: {
             style: {
                 minHeight: '56px',
-                backgroundColor: '#0B0C0F',
+                backgroundColor: '#050E18',
                 color: '#C4D1ED',
                 border: 'none',
             },
         },
         headRow: {
             style: {
-                backgroundColor: '#0B0C0F',
+                backgroundColor: '#050E18',
                 color: '#C4D1ED',
                 border: 'none',
             },
@@ -27,7 +28,7 @@ const TableUsers = () => {
         rows: {
             style: {
                 color: 'white',
-                backgroundColor: '#0B0C0F',
+                backgroundColor: '#050E18',
                 border: 'none',
                 '&:hover': {
                     backgroundColor: '#525252',
@@ -40,7 +41,7 @@ const TableUsers = () => {
         },
         pagination: {
             style: {
-              backgroundColor: '#0B0C0F',
+              backgroundColor: '#050E18',
               color: 'white',
               fill: 'white'
             },
@@ -131,9 +132,11 @@ const TableUsers = () => {
     }, []);
 
     return (
-        <div className="marginTop">
+        <div className="table3">
             {loading ? (
-                <p>Загрузка...</p>
+                <Box display="flex" justifyContent="center" alignItems="center" height="100%">
+                    <CircularProgress color="primary" />
+                </Box>
             ) : (
                 <DataTable
                     title="Пользователи"

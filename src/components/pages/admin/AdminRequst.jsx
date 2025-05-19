@@ -2,9 +2,14 @@ import React, { useState, useEffect } from 'react';
 import DataTable from 'react-data-table-component';
 import { database } from '../../../assets/firebase';
 import { ref, onValue, update } from 'firebase/database';
+import { useAuth } from '../../context/authContext';
+import { useNavigate } from 'react-router-dom';
+import './Table.css'
 
 const AdminRequestsTable = () => {
+  const { authUser } = useAuth(); // Получаем информацию о пользователе из контекста
   const [requests, setRequests] = useState([]);
+  const navigate = useNavigate(); // Получаем объект navigate для перенаправления
 
   useEffect(() => {
     const requestsRef = ref(database, 'заявки');
@@ -23,60 +28,27 @@ const AdminRequestsTable = () => {
     update(statusRef, { статус: status });
   };
 
-  const tableCustomStyles = {
-    header: {
-      style: {
-        minHeight: '56px',
-              backgroundColor: '#0B0C0F',
-              color: '#C4D1ED'
-      },
-    },
-    headRow: {
-      style: {
-        backgroundColor: '#0B0C0F',
-              color: '#C4D1ED'
-        
-      },
-    },
-      rows: {
-          style: {
-            color: 'white',
-            backgroundColor: '#0B0C0F',
-            '&:hover': {
-              backgroundColor: '#525252'
-            }
-          },
-          stripedStyle: {
-            color: 'black',
-            backgroundColor: '#F2F2F2'
-          }
-        },
-      pagination: {
-          style: {
-              backgroundColor: '#0B0C0F',
-              color: 'white',
-              fill: 'white'
-          },
-          pageButtonsStyle: {
-        color: 'white',
-        fill: 'white',
-        backgroundColor: 'transparent',
-        '&:disabled': {
-          cursor: 'unset',
-          color: '',
-          fill: '#919191',
-        },
-        '&:hover:not(:disabled)': {
-          backgroundColor: '#525252',
-        },
-        '&:focus': {
-          outline: 'none',
-          backgroundColor: '#919191',
-        },
-      },
+  const handleStartWork = async (id) => {
+    const userEmail = authUser?.email; // Получаем почту текущего пользователя
+    if (!userEmail) {
+      console.error("Пользователь не аутентифицирован");
+      return;
+    }
+
+    // Обновляем статус на "в обработке"
+    const statusRef = ref(database, `заявки/${id}`);
+    await update(statusRef, { статус: 'в обработке', почта_мастера: userEmail });
+
+    // Создаем новый узел для проделанных работ
+    const workRef = ref(database, `работы/${id}`);
+    await update(workRef, {
+      проделанные_работы: {
+        перечень_работ: [] // Инициализируем пустым массивом
       }
-    
-    
+    });
+
+    // Перенаправляем на страницу описания работ
+    navigate(`/work/${id}`); // Используем navigate для перенаправления
   };
 
   const columns = [
@@ -92,20 +64,72 @@ const AdminRequestsTable = () => {
         <option value="в обработке">В обработке</option>
         <option value="выполнена">Выполнена</option>
       </select>
+    )},
+    { name: 'Действия', cell: row => (
+      <button className='button-delete' onClick={() => handleStartWork(row.id)}>Начать работу</button>
     )}
   ];
 
   return (
-    <div>
-    <DataTable
-      title="Заявки Пользователей"
-      columns={columns}
-      data={requests}
-      defaultSortField="дата"
-      defaultSortAsc={false}
-      pagination
-      customStyles={tableCustomStyles}
-    />
+    <div className='table-request'>
+      <DataTable
+        title="Заявки пользователей"
+        columns={columns}
+        data={requests}
+        pagination
+        customStyles={{
+          header: {
+            style: {
+              minHeight: '56px',
+              backgroundColor: '#050E18',
+              color: '#C4D1ED'
+            },
+          },
+          headRow: {
+            style: {
+              backgroundColor: '#050E18',
+              color: '#C4D1ED'
+            },
+          },
+          rows: {
+            style: {
+              color: 'white',
+              backgroundColor: '#050E18',
+              '&:hover': {
+                backgroundColor: '#525252'
+              }
+            },
+            stripedStyle: {
+              color: 'black',
+              backgroundColor: '#F2F2F2'
+            }
+          },
+          pagination: {
+            style: {
+              backgroundColor: '#050E18',
+              color: 'white',
+              fill: 'white'
+            },
+            pageButtonsStyle: {
+              color: 'white',
+              fill: 'white',
+              backgroundColor: 'transparent',
+              '&:disabled': {
+                cursor: 'unset',
+                color: '',
+                fill: '#919191',
+              },
+              '&:hover:not(:disabled)': {
+                backgroundColor: '#525252',
+              },
+              '&:focus': {
+                outline: 'none',
+                backgroundColor: '#919191',
+              },
+            },
+          }
+        }}
+      />
     </div>
   );
 };

@@ -3,30 +3,32 @@ import DataTable from 'react-data-table-component';
 import { database } from '../../../assets/firebase';
 import { ref, onValue, update, remove } from 'firebase/database';
 import * as XLSX from 'xlsx';
+import { useNavigate } from 'react-router-dom'; // Импортируйте useNavigate
 import './Admin.css';
 
 const AdminTable = () => {
   const [requests, setRequests] = useState([]);
+  const navigate = useNavigate(); // Получаем объект navigate для перенаправления
 
   // Стили для DataTable
   const tableCustomStyles = {
     header: {
       style: {
         minHeight: '56px',
-        backgroundColor: '#0B0C0F',
+        backgroundColor: '#050E18',
         color: '#C4D1ED'
       },
     },
     headRow: {
       style: {
-        backgroundColor: '#0B0C0F',
+        backgroundColor: '#050E18',
         color: '#C4D1ED'
       },
     },
     rows: {
       style: {
         color: 'white',
-        backgroundColor: '#0B0C0F',
+        backgroundColor: '#050E18',
         '&:hover': {
           backgroundColor: '#525252'
         }
@@ -38,7 +40,7 @@ const AdminTable = () => {
     },
     pagination: {
       style: {
-        backgroundColor: '#0B0C0F',
+        backgroundColor: '#050E18',
         color: 'white',
         fill: 'white'
       },
@@ -94,6 +96,11 @@ const AdminTable = () => {
     remove(requestRef);
   };
 
+  // Обработчик для просмотра работ
+  const handleViewWork = (id) => {
+    navigate(`/work/${id}`); // Перенаправление на страницу работ
+  };
+
   // Колонки для DataTable
   const columns = [
     { name: 'Продукт', selector: row => row.продукт, sortable: true },
@@ -107,18 +114,20 @@ const AdminTable = () => {
         <option value="отклонена">Отклонена</option>
         <option value="в обработке">В обработке</option>
         <option value="выполнена">Выполнена</option>
-      </select>)},
+      </select>
+    )},
     { name: 'Действия', cell: row => (
       <>
         <button className='button-delete' onClick={() => handleDeleteRequest(row.id)}>Удалить</button>
+        <button className='button-view' onClick={() => handleViewWork(row.id)}>Просмотр работ</button>
       </>
     )}
   ];
 
   return (
-    <div className='marginTop' >
+    <div className='table-request2'>
       <DataTable
-        title="Заявки Пользователей"
+        title="Заявки пользователей"
         columns={columns}
         data={requests}
         defaultSortField="дата"
@@ -127,7 +136,7 @@ const AdminTable = () => {
         customStyles={tableCustomStyles}
       />
       <div className='marginLeft'>
-      <button className='button-submit' onClick={exportToExcel}>Экспорт в Excel</button>
+        <button className='button-submit' onClick={exportToExcel}>Экспорт в Excel</button>
       </div>
     </div>
   );

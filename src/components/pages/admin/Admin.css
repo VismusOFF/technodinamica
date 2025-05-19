@@ -59,3 +59,19 @@ option {
   .marginLeft {
     margin-left: 20px;
   }
+
+  .button-view {
+    height: 30px;
+    color: white;
+    background-color: #2D92FB;
+    border: none;
+    transition: 0.3s;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 15px;
+  }
+
+  .button-view:hover {
+    background-color: #1A6BB8;
+    transform: scale(1.1);
+  }

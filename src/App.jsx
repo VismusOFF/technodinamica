@@ -20,7 +20,8 @@ import ResetPassword from './components/pages/auth/ResetPass';
 import CustomDrawer from './components/draver/Drawer';
 import { useState, useEffect } from 'react';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import RequestHistory from './components/Requst/Requesthistory'
+import RequestHistory from './components/Requst/Requesthistory';
+import WorkDetails from './components/pages/admin/WorkDetails';
 
 function App() {
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 767);
@@ -52,7 +53,7 @@ function App() {
         },
     });
 
-    return (
+     return (
         <AuthProvider>
             <ThemeProvider theme={theme}>
                 <BrowserRouter>
@@ -97,6 +98,11 @@ function App() {
                                 </PrivateRoute>
                             } />
                             <Route path='/newAuth' element={<NewAuth />} />
+                            <Route path='/work/:id' element={
+                                <PrivateRoute allowedRoles={['мастер', 'администратор']}>
+                                    <WorkDetails />
+                                </PrivateRoute>
+                            } />
                         </Routes>
                     </div>
                 </BrowserRouter>
